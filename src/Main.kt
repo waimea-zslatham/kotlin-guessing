@@ -9,6 +9,8 @@ fun main() {
     println("-----------------------")
     println()
 
+    var guesses = 0
+
     val numToGuess = (1..100).random()
 
     println("I'm thinking of a number from 1 - 100")
@@ -20,8 +22,11 @@ fun main() {
 
     // MAIN LOOP
     while (true) {
+        var playerName = getString("Enter Your Name: ")
+        print("Nice to meet you, $playerName")
+    }
         // Ask the user for a  guess
-        val guess = readln().toIntOrNull()
+        val guess = getString().toIntOrNull()
 
         if (guess == null) {
             println("Enter a number!")
@@ -45,4 +50,39 @@ fun main() {
         // Otherwise give high/lower feedback
 
         }
+
+    /**
+     * Function to get a string from the user
+     * parameters
+     *  - prompt - Text to show the user
+     *  returns:
+     *  - String that the user types
+     */
+    fun getString(prompt: String): String {
+        var userInput: String
+
+        while(true) {
+            print(prompt)
+
+            userInput = readln()
+            if (userInput.isNotBlank()) break
+        }
+
+        return userInput
     }
+
+    /**
+     * Function to get an Int from the user
+     */
+
+fun getInt(prompt: String): Int {
+        var intValue: Int?
+
+        while (true) {
+            val userInput = getString(prompt)
+            intValue = userInput.toIntOrNull()
+            if (intValue != null) break
+        }
+
+        return intValue!!
+}
